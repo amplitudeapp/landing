@@ -18,7 +18,7 @@ export function FinalCtaSection() {
           </h2>
           <p className="mx-auto mt-6 max-w-xl text-sm leading-[1.75] text-muted-light sm:mt-7 sm:text-base">
             L&apos;offre de lancement court jusqu&apos;au{" "}
-            <span className="font-semibold text-text">31 juillet à minuit</span>
+            <span className="font-semibold text-text">7 août à minuit</span>
             , et les places Fondateur sont limitées.
           </p>
           <a

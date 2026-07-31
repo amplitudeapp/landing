@@ -18,7 +18,7 @@ export function LaunchBanner() {
           <span className="font-semibold tracking-wide">LANCEMENT</span>
           <span className="ml-2 hidden sm:inline">
             Offre annuelle -50&nbsp;% &amp; deux formules inédites ; jusqu&apos;au
-            31 juillet, minuit
+            7 août, minuit
           </span>
           <span className="ml-2 sm:hidden">Offre annuelle -50&nbsp;%</span>
         </p>

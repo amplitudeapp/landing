@@ -295,7 +295,7 @@ export function Pricing() {
             </h2>
             <p className="mt-6 text-sm leading-[1.75] text-muted-light sm:mt-7 sm:text-base">
               À l&apos;occasion du lancement, l&apos;abonnement annuel Amplitude est à
-              -50&nbsp;% jusqu&apos;au 31 juillet 2026.{" "}
+              -50&nbsp;% jusqu&apos;au 7 août 2026.{" "}
               <span className="font-medium text-text">
                 Amplitude Pro et Amplitude Max ne seront disponibles que pendant
                 cette période
@@ -308,7 +308,7 @@ export function Pricing() {
               <span className="font-medium text-text">iOS</span>
               {" — "}
               <span className="font-medium text-gold">
-                Android à venir juillet 2026
+                Android à venir août 2026
               </span>
               .
             </p>
@@ -337,7 +337,7 @@ export function Pricing() {
               <span className="font-semibold text-gold">
                 Amplitude Pro & Amplitude Max
               </span>{" "}
-              : offres exclusives au lancement, non disponibles après le 31 juillet.
+              : offres exclusives au lancement, non disponibles après le 7 août.
             </p>
           </div>
         </Reveal>
@@ -357,7 +357,7 @@ export function Pricing() {
             <p className="text-center text-sm text-muted-light">
               Disponible sur iOS —{" "}
               <span className="font-medium text-gold">
-                Android à venir juillet 2026
+                Android à venir août 2026
               </span>
             </p>
             <ul className="flex flex-wrap items-center justify-center gap-x-8 gap-y-3 text-sm text-muted-light">

@@ -46,7 +46,7 @@ const plans = [
     compareAt: "998 €",
     discount: "-50 %",
     launchOnly: true,
-    scarcityNote: "Place limitée à 20 personnes pour Amplitude Max",
+    scarcityNote: "20 places prises — 10 nouvelles ouvertes jusqu'au 7 août",
     cta: "Rejoindre Amplitude Max",
     href:
       import.meta.env.VITE_STRIPE_LINK_AMPLITUDE_MAX ??

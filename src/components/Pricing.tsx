@@ -342,6 +342,45 @@ export function Pricing() {
           </div>
         </Reveal>
 
+        <Reveal delay={100}>
+          <div className="mt-6 max-w-xl rounded-2xl border border-gold/25 bg-card px-5 py-5 sm:mx-auto sm:mt-8 sm:px-6 sm:py-6">
+            <p className="text-center text-[11px] font-semibold tracking-[0.16em] text-gold uppercase">
+              Android arrive bientôt
+            </p>
+            <div className="mt-4 space-y-3.5">
+              <div className="flex items-start gap-3">
+                <span
+                  aria-hidden
+                  className="mt-0.5 flex h-5 w-5 shrink-0 items-center justify-center rounded-full bg-gold/15 text-[11px] font-bold text-gold"
+                >
+                  ✓
+                </span>
+                <p className="text-sm leading-relaxed text-muted-light">
+                  <span className="font-semibold text-text">
+                    Prends ton abonnement maintenant
+                  </span>{" "}
+                  et profite de l&apos;offre de -50&nbsp;%.
+                </p>
+              </div>
+              <div className="flex items-start gap-3">
+                <span
+                  aria-hidden
+                  className="mt-0.5 flex h-5 w-5 shrink-0 items-center justify-center rounded-full bg-gold/15 text-[11px] font-bold text-gold"
+                >
+                  ✓
+                </span>
+                <p className="text-sm leading-relaxed text-muted-light">
+                  Ton abonnement{" "}
+                  <span className="font-semibold text-text">
+                    commencera automatiquement le jour de la sortie
+                  </span>{" "}
+                  de l&apos;application sur Android.
+                </p>
+              </div>
+            </div>
+          </div>
+        </Reveal>
+
         <div className="mt-12 grid items-start gap-6 px-1 lg:mt-16 lg:grid-cols-3 lg:items-stretch lg:gap-6">
           {plans.map((plan, index) => (
             <div key={plan.id} className="flex min-h-0 flex-col lg:h-full">

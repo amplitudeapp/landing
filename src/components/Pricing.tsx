@@ -1,9 +1,10 @@
 import { Reveal } from "./Reveal";
 
-// TODO(coco): remplacer par les vrais Payment Links Stripe une fois les 2
-// produits créés (semestriel = prix récurrent 6 mois, mensuel = récurrent 1 mois).
-const STRIPE_LINK_SEMESTRIEL = "https://buy.stripe.com/REMPLACER_SEMESTRIEL";
-const STRIPE_LINK_MENSUEL = "https://buy.stripe.com/REMPLACER_MENSUEL";
+// Payment Links Stripe. Les deux sont des abonnements récurrents (6 mois et
+// 1 mois) : jamais de paiement unique, que le back-end lirait comme un accès à
+// vie. Ils redirigent vers /payment-success, d'où part la création du mot de passe.
+const STRIPE_LINK_SEMESTRIEL = "https://buy.stripe.com/14A7sM04EgX7dGs8aN2cg0a";
+const STRIPE_LINK_MENSUEL = "https://buy.stripe.com/7sYfZi7x6fT30TG3Ux2cg09";
 
 const plans = [
   {

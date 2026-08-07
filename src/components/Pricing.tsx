@@ -1,112 +1,47 @@
-import { useState } from "react";
 import { Reveal } from "./Reveal";
-import { useLaunchCountdown } from "../hooks/useLaunchCountdown";
-import { LAUNCH_END } from "../lib/launch";
 
-type PlanId = "amplitude" | "pro" | "max";
+// TODO(coco): remplacer par les vrais Payment Links Stripe une fois les 2
+// produits créés (semestriel = prix récurrent 6 mois, mensuel = récurrent 1 mois).
+const STRIPE_LINK_SEMESTRIEL = "https://buy.stripe.com/REMPLACER_SEMESTRIEL";
+const STRIPE_LINK_MENSUEL = "https://buy.stripe.com/REMPLACER_MENSUEL";
 
 const plans = [
   {
-    id: "amplitude" as const,
+    id: "semestriel" as const,
     brand: "amplitude",
-    title: "L'offre annuelle",
-    price: "149",
-    period: "/an",
-    compareAt: "298 €",
-    discount: "-50 %",
+    title: "L'abonnement 6 mois",
+    price: "119,40",
+    period: "tous les 6 mois",
+    note: "Soit 19,90 € par mois",
     cta: "Rejoindre Amplitude",
-    href:
-      import.meta.env.VITE_STRIPE_LINK_AMPLITUDE ??
-      "https://buy.stripe.com/14A3cweZy9uFgSE0Il2cg07",
-    variant: "primary" as const,
+    href: import.meta.env.VITE_STRIPE_LINK_SEMESTRIEL ?? STRIPE_LINK_SEMESTRIEL,
   },
   {
-    id: "pro" as const,
-    brand: "amplitude pro",
-    title: "L'offre annuelle avec suivi",
-    price: "249",
-    period: "/an",
-    compareAt: "498 €",
-    discount: "-50 %",
-    badge: "★ Recommandé",
-    featured: true,
-    launchOnly: true,
-    cta: "Rejoindre Amplitude Pro",
-    href:
-      import.meta.env.VITE_STRIPE_LINK_AMPLITUDE_PRO ??
-      "https://buy.stripe.com/28E3cw18I0Y9fOAdv72cg04",
-    variant: "primary" as const,
-  },
-  {
-    id: "max" as const,
-    brand: "amplitude max",
-    title: "L'offre fondateur, à vie !",
-    price: "499",
-    period: "paiement unique",
-    compareAt: "998 €",
-    discount: "-50 %",
-    launchOnly: true,
-    scarcityNote: "20 places prises — 10 nouvelles ouvertes jusqu'au 7 août",
-    cta: "Rejoindre Amplitude Max",
-    href:
-      import.meta.env.VITE_STRIPE_LINK_AMPLITUDE_MAX ??
-      "https://buy.stripe.com/bJeaEY04E9uF0TGdv72cg08",
-    variant: "primary" as const,
+    id: "mensuel" as const,
+    brand: "amplitude",
+    title: "L'abonnement mensuel",
+    price: "24,90",
+    period: "par mois",
+    note: "Sans engagement, résiliable à tout moment",
+    cta: "Rejoindre Amplitude",
+    href: import.meta.env.VITE_STRIPE_LINK_MENSUEL ?? STRIPE_LINK_MENSUEL,
   },
 ];
 
-const comparisonFeatures: {
-  label: string;
-  included: Record<PlanId, boolean>;
-}[] = [
-  {
-    label: "Accès annuel à l'application mobile",
-    included: { amplitude: true, pro: true, max: true },
-  },
-  {
-    label: "Tous les cours et programmes signatures",
-    included: { amplitude: true, pro: true, max: true },
-  },
-  {
-    label: "Nouvelles vidéos chaque mois",
-    included: { amplitude: true, pro: true, max: true },
-  },
-  {
-    label: "Routines de pré-training et de récupération",
-    included: { amplitude: true, pro: true, max: true },
-  },
-  {
-    label: "Outil de mesure photo",
-    included: { amplitude: true, pro: true, max: true },
-  },
-  {
-    label: "Connexion Apple Santé",
-    included: { amplitude: true, pro: true, max: true },
-  },
-  {
-    label: "Statistiques et calendrier d'entraînement personnalisé",
-    included: { amplitude: true, pro: true, max: true },
-  },
-  {
-    label: "Communauté privée",
-    included: { amplitude: true, pro: true, max: true },
-  },
-  {
-    label: "3 mois de suivi bi-mensuel en live (à partir de septembre)",
-    included: { amplitude: false, pro: true, max: true },
-  },
-  {
-    label: "Accès à vie à l'application mobile",
-    included: { amplitude: false, pro: false, max: true },
-  },
-  {
-    label: "3 visios individuelles de 30 min (à partir de septembre)",
-    included: { amplitude: false, pro: false, max: true },
-  },
-  {
-    label: "-20 % sur les offres individuelles & workshops",
-    included: { amplitude: false, pro: false, max: true },
-  },
+/** Les deux formules donnent accès à la même chose : une seule liste suffit. */
+const includedFeatures = [
+  "Application mobile et tablette",
+  "Tous les cours à l'unité et le Programme Signature",
+  "Une nouvelle vidéo ou un nouveau programme chaque mois",
+  "Routines de pré-training et de récupération",
+  "Outil de mesure d'angle sur les différentes postures",
+  "Statistiques de progression",
+  "Calendrier d'entraînement personnalisé",
+  "Connexion Apple Santé",
+  "Cours guidés",
+  "Entraînements indépendants",
+  "Onglet Conseils",
+  "Communauté privée",
 ];
 
 const trustItems = [
@@ -114,163 +49,54 @@ const trustItems = [
   "Paiement sécurisé",
 ];
 
-const PROMO_CODE = "LANCEMENT";
-
-function PromoCodeCopy() {
-  const [copied, setCopied] = useState(false);
-
-  async function handleCopy() {
-    try {
-      await navigator.clipboard.writeText(PROMO_CODE);
-      setCopied(true);
-      window.setTimeout(() => setCopied(false), 2000);
-    } catch {
-      setCopied(false);
-    }
-  }
-
-  return (
-    <div className="inline-flex items-center gap-2">
-      <span className="rounded-lg border border-dashed border-gold/60 bg-bg px-4 py-1.5 text-sm font-bold tracking-[0.12em] text-gold">
-        {PROMO_CODE}
-      </span>
-      <button
-        type="button"
-        onClick={handleCopy}
-        aria-label={copied ? "Code copié" : "Copier le code promo"}
-        className="inline-flex h-9 w-9 shrink-0 cursor-pointer items-center justify-center rounded-lg border border-gold/30 bg-bg text-gold transition-colors duration-200 hover:border-gold/50 hover:bg-gold-subtle"
-      >
-        {copied ? (
-          <svg className="h-4 w-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" aria-hidden>
-            <path strokeLinecap="round" strokeLinejoin="round" d="M5 13l4 4L19 7" />
-          </svg>
-        ) : (
-          <svg className="h-4 w-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" aria-hidden>
-            <rect x="9" y="9" width="13" height="13" rx="2" />
-            <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1" />
-          </svg>
-        )}
-      </button>
-    </div>
-  );
-}
-
-
-function FeatureList({ planId }: { planId: PlanId }) {
+function FeatureList() {
   return (
     <ul className="min-h-0 space-y-2.5">
-      {comparisonFeatures.map((feature) => {
-        const included = feature.included[planId];
-        const isMaxExclusive =
-          feature.included.max &&
-          !feature.included.pro &&
-          !feature.included.amplitude;
-
-        return (
-          <li
-            key={feature.label}
-            className={`flex items-start gap-3 text-sm font-medium ${
-              included ? "text-muted-light" : "text-muted"
-            }`}
+      {includedFeatures.map((feature) => (
+        <li
+          key={feature}
+          className="flex items-start gap-3 text-sm font-medium text-muted-light"
+        >
+          <span
+            className="mt-0.5 flex h-5 w-5 shrink-0 items-center justify-center rounded-full bg-gold/15 text-[11px] font-bold text-gold"
+            aria-hidden
           >
-            <span
-              className={`mt-0.5 flex h-5 w-5 shrink-0 items-center justify-center rounded-full text-[11px] font-bold ${
-                included
-                  ? "bg-gold/15 text-gold"
-                  : "bg-surface-inset text-muted"
-              }`}
-              aria-hidden
-            >
-              {included ? (isMaxExclusive ? "★" : "✓") : "✕"}
-            </span>
-            <span className={included ? "" : "opacity-70"}>{feature.label}</span>
-          </li>
-        );
-      })}
+            ✓
+          </span>
+          <span>{feature}</span>
+        </li>
+      ))}
     </ul>
   );
 }
 
-function PricingCard({
-  plan,
-}: {
-  plan: (typeof plans)[number];
-}) {
-  const isPrimary = plan.variant === "primary";
-
+function PricingCard({ plan }: { plan: (typeof plans)[number] }) {
   return (
-    <article
-      className={`card-dark relative flex flex-col p-6 sm:p-7 lg:h-full lg:min-h-full ${
-        plan.featured
-          ? "border-gold/55 bg-gradient-to-b from-gold-subtle via-card to-card shadow-[0_0_0_1px_rgba(227,211,164,0.28),0_20px_56px_-16px_rgba(227,211,164,0.38)]"
-          : ""
-      }`}
-    >
-      {plan.featured ? (
-        <div
-          aria-hidden
-          className="pointer-events-none absolute inset-x-8 top-0 h-px bg-gradient-to-r from-transparent via-gold/70 to-transparent"
-        />
-      ) : null}
-
-      {plan.badge ? (
-        <span
-          className={`absolute top-0 right-4 z-10 -translate-y-1/2 inline-flex items-center rounded-full px-3 py-1 text-[11px] font-semibold tracking-wide ${
-            plan.featured
-              ? "bg-gold text-on-gold shadow-[0_4px_18px_rgba(227,211,164,0.45)]"
-              : "border border-gold/30 bg-card text-gold"
-          }`}
-        >
-          {plan.badge}
-        </span>
-      ) : null}
-
+    <article className="card-dark relative flex flex-col p-6 sm:p-7 lg:h-full lg:min-h-full">
       <div className="shrink-0">
         <p className="label-accent">{plan.brand}</p>
-        <h3 className="mt-3 text-lg font-semibold tracking-tight sm:mt-4 sm:text-xl lg:min-h-[3rem]">
+        <h3 className="mt-3 text-lg font-semibold tracking-tight sm:mt-4 sm:text-xl">
           {plan.title}
         </h3>
 
-        {plan.launchOnly ? (
-          <div className="mt-3 flex flex-wrap items-center gap-2">
-            <p className="inline-flex items-center rounded-full border border-gold/35 bg-gold-subtle px-3 py-1 text-[11px] font-semibold tracking-wide text-gold uppercase">
-              Uniquement pendant le lancement
-            </p>
-            {"scarcityNote" in plan && plan.scarcityNote ? (
-              <p className="inline-flex items-center rounded-full border border-gold/35 bg-gold-subtle px-3 py-1 text-[11px] font-semibold tracking-wide text-gold uppercase">
-                {plan.scarcityNote}
-              </p>
-            ) : null}
-          </div>
-        ) : (
-          <div className="hidden h-[1.75rem] lg:block" aria-hidden />
-        )}
-
-        <div className="mt-3 flex items-end gap-2 sm:mt-4">
+        <div className="mt-4 flex items-end gap-2">
           <span className="text-4xl font-semibold leading-none tracking-tighter sm:text-5xl">
             {plan.price}
           </span>
           <span className="pb-1 text-lg font-medium leading-none">€</span>
-          {plan.period ? (
-            <span className="pb-1 text-sm text-muted-light">{plan.period}</span>
-          ) : null}
+          <span className="pb-1 text-sm text-muted-light">{plan.period}</span>
         </div>
 
-        <p className="mt-2 text-sm text-muted-light">
-          <span className="line-through">{plan.compareAt}</span>{" "}
-          <span className="font-medium text-gold">{plan.discount}</span>
-        </p>
+        <p className="mt-2 text-sm font-medium text-gold">{plan.note}</p>
       </div>
 
-      <div className="mt-6 flex-1 min-h-0">
-        <FeatureList planId={plan.id} />
+      <div className="mt-6 min-h-0 flex-1">
+        <FeatureList />
       </div>
 
       <a
         href={plan.href}
-        className={`mt-8 w-full ${
-          isPrimary ? "btn-primary" : "btn-secondary"
-        }`}
+        className="btn-primary mt-8 w-full"
         rel="noopener noreferrer"
       >
         {plan.cta}
@@ -280,108 +106,31 @@ function PricingCard({
 }
 
 export function Pricing() {
-  const countdown = useLaunchCountdown(LAUNCH_END);
-
   return (
     <section id="tarifs" className="px-4 py-14 sm:px-6 sm:py-20 lg:px-8 lg:py-24">
       <div className="mx-auto max-w-7xl">
         <Reveal>
           <div className="section-header">
-            <p className="label-accent">
-              Offre de lancement
-            </p>
+            <p className="label-accent">Nos formules</p>
             <h2 className="mt-5 text-3xl font-medium leading-tight tracking-tight sm:mt-6 sm:text-4xl lg:text-5xl">
               Rejoins la communauté Amplitude
             </h2>
             <p className="mt-6 text-sm leading-[1.75] text-muted-light sm:mt-7 sm:text-base">
-              À l&apos;occasion du lancement, l&apos;abonnement annuel Amplitude est à
-              -50&nbsp;% jusqu&apos;au 7 août 2026.{" "}
-              <span className="font-medium text-text">
-                Amplitude Pro et Amplitude Max ne seront disponibles que pendant
-                cette période
-              </span>{" "}
-              ; deux formules inédites avec suivi pour celles et ceux qui veulent
-              aller plus loin.
+              Deux formules, le{" "}
+              <span className="font-medium text-text">même accès complet</span> à
+              la méthode. À toi de choisir ton rythme : six mois pour t&apos;engager
+              sur la durée, ou au mois sans engagement.
             </p>
             <p className="mt-4 text-sm leading-relaxed text-muted-light sm:text-base">
               Application disponible sur{" "}
               <span className="font-medium text-text">iOS</span>
-              {" — "}
-              <span className="font-medium text-gold">
-                Android à venir août 2026
-              </span>
-              .
+              {" et "}
+              <span className="font-medium text-text">Android</span>.
             </p>
           </div>
         </Reveal>
 
-        <Reveal delay={80}>
-          <div className="mt-10 max-w-xl rounded-2xl border border-gold/25 bg-gold-subtle px-5 py-5 text-left sm:mx-auto sm:mt-12 sm:px-6 sm:py-6 sm:text-center">
-            <p className="text-[11px] font-semibold tracking-[0.16em] text-muted-light uppercase">
-              L&apos;offre se termine dans
-            </p>
-            <p className="mt-3 text-2xl font-semibold tracking-tight text-gold tabular-nums sm:text-3xl">
-              {countdown.expired
-                ? "Offre terminée"
-                : `${countdown.days}j ${countdown.hours}h ${countdown.minutes}m ${countdown.seconds}s`}
-            </p>
-
-            <div className="mt-5 flex flex-wrap items-center justify-center gap-3 border-t border-gold/15 pt-5">
-              <p className="text-sm text-muted-light">
-                Code à indiquer pour -50&nbsp;% :
-              </p>
-              <PromoCodeCopy />
-            </div>
-
-            <p className="mt-5 text-sm leading-relaxed text-muted-light">
-              <span className="font-semibold text-gold">
-                Amplitude Pro & Amplitude Max
-              </span>{" "}
-              : offres exclusives au lancement, non disponibles après le 7 août.
-            </p>
-          </div>
-        </Reveal>
-
-        <Reveal delay={100}>
-          <div className="mt-6 max-w-xl rounded-2xl border border-gold/25 bg-card px-5 py-5 sm:mx-auto sm:mt-8 sm:px-6 sm:py-6">
-            <p className="text-center text-[11px] font-semibold tracking-[0.16em] text-gold uppercase">
-              Android arrive bientôt
-            </p>
-            <div className="mt-4 space-y-3.5">
-              <div className="flex items-start gap-3">
-                <span
-                  aria-hidden
-                  className="mt-0.5 flex h-5 w-5 shrink-0 items-center justify-center rounded-full bg-gold/15 text-[11px] font-bold text-gold"
-                >
-                  ✓
-                </span>
-                <p className="text-sm leading-relaxed text-muted-light">
-                  <span className="font-semibold text-text">
-                    Prends ton abonnement maintenant
-                  </span>{" "}
-                  et profite de l&apos;offre de -50&nbsp;%.
-                </p>
-              </div>
-              <div className="flex items-start gap-3">
-                <span
-                  aria-hidden
-                  className="mt-0.5 flex h-5 w-5 shrink-0 items-center justify-center rounded-full bg-gold/15 text-[11px] font-bold text-gold"
-                >
-                  ✓
-                </span>
-                <p className="text-sm leading-relaxed text-muted-light">
-                  Ton abonnement{" "}
-                  <span className="font-semibold text-text">
-                    commencera automatiquement le jour de la sortie
-                  </span>{" "}
-                  de l&apos;application sur Android.
-                </p>
-              </div>
-            </div>
-          </div>
-        </Reveal>
-
-        <div className="mt-12 grid items-start gap-6 px-1 lg:mt-16 lg:grid-cols-3 lg:items-stretch lg:gap-6">
+        <div className="mt-12 grid items-start gap-6 px-1 sm:mx-auto sm:max-w-4xl lg:mt-16 lg:grid-cols-2 lg:items-stretch lg:gap-6">
           {plans.map((plan, index) => (
             <div key={plan.id} className="flex min-h-0 flex-col lg:h-full">
               <Reveal delay={120 + index * 80} className="flex h-full flex-1 flex-col">
@@ -391,13 +140,10 @@ export function Pricing() {
           ))}
         </div>
 
-        <Reveal delay={360}>
+        <Reveal delay={300}>
           <div className="mt-10 space-y-5 sm:mt-12">
             <p className="text-center text-sm text-muted-light">
-              Disponible sur iOS —{" "}
-              <span className="font-medium text-gold">
-                Android à venir août 2026
-              </span>
+              Disponible sur iOS et Android
             </p>
             <ul className="flex flex-wrap items-center justify-center gap-x-8 gap-y-3 text-sm text-muted-light">
               {trustItems.map((item) => (

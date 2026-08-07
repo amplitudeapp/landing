@@ -1,10 +1,6 @@
 import { Reveal } from "./Reveal";
-import { useLaunchCountdown } from "../hooks/useLaunchCountdown";
-import { LAUNCH_END } from "../lib/launch";
 
 export function FinalCtaSection() {
-  const countdown = useLaunchCountdown(LAUNCH_END);
-
   return (
     <section
       aria-label="Rejoindre Amplitude"
@@ -17,9 +13,8 @@ export function FinalCtaSection() {
             <span className="text-gold">de souplesse et de mobilité ?</span>
           </h2>
           <p className="mx-auto mt-6 max-w-xl text-sm leading-[1.75] text-muted-light sm:mt-7 sm:text-base">
-            L&apos;offre de lancement court jusqu&apos;au{" "}
-            <span className="font-semibold text-text">7 août à minuit</span>
-            , et les places Fondateur sont limitées.
+            Six mois ou au mois sans engagement — le même accès complet à la
+            méthode, et tu commences aujourd&apos;hui.
           </p>
           <a
             href="#tarifs"
@@ -27,19 +22,6 @@ export function FinalCtaSection() {
           >
             Je rejoins Amplitude
           </a>
-        </Reveal>
-
-        <Reveal delay={120}>
-          <div className="mt-6 inline-flex items-center gap-3 rounded-full border border-gold/30 bg-gold-subtle px-5 py-2.5 sm:mt-7">
-            <span className="text-xs font-semibold text-muted-light uppercase">
-              Il reste
-            </span>
-            <span className="text-sm font-semibold tabular-nums text-gold sm:text-base">
-              {countdown.expired
-                ? "Offre terminée"
-                : `${countdown.days}j ${countdown.hours}h ${countdown.minutes}m ${countdown.seconds}s`}
-            </span>
-          </div>
         </Reveal>
       </div>
     </section>

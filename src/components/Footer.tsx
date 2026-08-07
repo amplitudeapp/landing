@@ -12,6 +12,9 @@ const navLinks = [
 ];
 
 const legalLinks = [
+  // Doit rester visible : la résiliation en autonomie est une obligation sur un
+  // abonnement sans engagement.
+  { href: "/gerer-abonnement", label: "Gérer mon abonnement" },
   { href: "/cgu", label: "CGU" },
   { href: "/cgv", label: "CGV" },
   { href: "/politique-de-confidentialite", label: "Confidentialité" },

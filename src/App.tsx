@@ -14,7 +14,6 @@ import { FAQ } from "./components/FAQ";
 import { FinalCtaSection } from "./components/FinalCtaSection";
 import { Footer } from "./components/Footer";
 import { ScrollProgress } from "./components/ScrollProgress";
-import { LaunchBanner } from "./components/LaunchBanner";
 import { LoadingScreen } from "./components/LoadingScreen";
 
 export default function App() {
@@ -25,7 +24,6 @@ export default function App() {
       <LoadingScreen onComplete={() => setIntroReady(true)} />
       <div className="relative min-h-dvh overflow-x-clip bg-bg">
       <div className="sticky top-0 z-[100]">
-        <LaunchBanner />
         <Header />
       </div>
       <main className="relative">

@@ -18,10 +18,16 @@
     'https://connect.facebook.net/en_US/fbevents.js');
     fbq('init', '869093325933237');
     fbq('track', 'PageView');
-    fbq('track', 'Purchase', {
-      value: 149.00,
-      currency: 'EUR'
-    });
+    // Montant passé par le lien Stripe (…/payment-success?v=119.40). Sans lui
+    // on envoie l'achat sans valeur : mieux qu'un montant faux, qui ferait
+    // optimiser les campagnes sur des chiffres inventés.
+    (function () {
+      var raw = new URLSearchParams(window.location.search).get('v');
+      var value = raw ? parseFloat(raw) : NaN;
+      fbq('track', 'Purchase', isFinite(value)
+        ? { value: value, currency: 'EUR' }
+        : { currency: 'EUR' });
+    })();
   </script>
   <noscript><img height="1" width="1" style="display:none"
   src="https://www.facebook.com/tr?id=869093325933237&ev=PageView&noscript=1"
@@ -165,14 +171,12 @@
         Télécharger sur l’App Store
       </a>
 
-      <!-- Android : remplacer href + retirer btn-disabled quand le Play Store sera live -->
       <a
-        class="btn btn-disabled"
-        href="#"
-        aria-disabled="true"
-        title="Bientôt disponible"
+        class="btn btn-primary"
+        href="https://play.google.com/store/apps/details?id=app.amplitude.stretching"
+        rel="noopener"
       >
-        Google Play — bientôt
+        Télécharger sur Google Play
       </a>
 
       <a
@@ -185,8 +189,8 @@
     </div>
 
     <p class="hint">
-      Si l’app ne s’ouvre pas, installez-la via l’App Store puis reconnectez-vous
-      avec le même email.
+      Si l’app ne s’ouvre pas, installez-la via l’App Store ou Google Play puis
+      reconnectez-vous avec le même email.
     </p>
   </main>
 </body>

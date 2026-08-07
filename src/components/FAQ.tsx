@@ -19,8 +19,12 @@ const faqs = [
     a: "Les premiers degrés gagnés se voient en quelques semaines chez les élèves réguliers ; et tu les mesures dans l'app. Pas de délai magique : c'est la régularité qui parle. Les avant/après de cette page se jouent sur 2 à 3 mois.",
   },
   {
-    q: "Pourquoi pas d'abonnement au mois pour le lancement ?",
-    a: "Parce que la souplesse se construit sur la durée ; un mois ne suffit pas à la transformer. La formule annuelle te met dans les vraies conditions de progresser, et au tarif de lancement elle revient à environ 12 €/mois. Un mensuel pourra arriver plus tard, mais pas pour l'ouverture.",
+    q: "Six mois ou au mois, je prends quoi ?",
+    a: "Les deux formules donnent exactement le même accès, c'est une question de rythme. Le mensuel à 24,90 € te laisse totalement libre, sans engagement. Le semestriel revient à 19,90 € par mois et te met dans les vraies conditions de progresser : la souplesse se construit sur la durée, un mois ne suffit pas à la transformer.",
+  },
+  {
+    q: "Comment je résilie ?",
+    a: "À tout moment, en autonomie : depuis la page « Gérer mon abonnement », tu reçois un lien par email qui t'ouvre ton espace de facturation. Tu y résilies en un clic. Ton accès reste ouvert jusqu'à la fin de la période déjà payée.",
   },
   {
     q: "Et si ça ne me convient pas ?",
@@ -32,7 +36,7 @@ const faqs = [
   },
   {
     q: "Sur quels appareils, et si je ne renouvelle pas ?",
-    a: "Amplitude fonctionne sur iOS, iPhone et iPad. Ton abonnement annuel est sans reconduction surprise : à la fin de l'année, tu choisis librement de continuer. Avec l'offre Fondateur à vie, tu gardes l'accès pour toujours.",
+    a: "Amplitude fonctionne sur iOS (iPhone, iPad) et Android. Ton abonnement se reconduit automatiquement à la fin de chaque période — tous les 6 mois ou tous les mois selon ta formule — et tu peux l'arrêter quand tu veux depuis « Gérer mon abonnement ». Si tu résilies, tu gardes l'accès jusqu'au bout de la période déjà payée.",
   },
 ];
 

@@ -19,8 +19,7 @@ const plans = [
     period: "tous les 6 mois",
     compareAt: "149,40",
     discount: "-20 %",
-    note: "Soit 19,90 € par mois au lieu de 24,90 €",
-    subNote: "149,40 € au tarif mensuel sur six mois, soit 30 € économisés",
+    note: "Soit 19,90 € par mois au lieu de 24,90 € au tarif mensuel",
     cta: "Rejoindre Amplitude",
     href: import.meta.env.VITE_STRIPE_LINK_SEMESTRIEL ?? STRIPE_LINK_SEMESTRIEL,
   },
@@ -33,7 +32,6 @@ const plans = [
     compareAt: null,
     discount: null,
     note: "Sans engagement, résiliable à tout moment",
-    subNote: null,
     cta: "Rejoindre Amplitude",
     href: import.meta.env.VITE_STRIPE_LINK_MENSUEL ?? STRIPE_LINK_MENSUEL,
   },
@@ -112,9 +110,6 @@ function PricingCard({ plan }: { plan: (typeof plans)[number] }) {
         </div>
 
         <p className="mt-2 text-sm font-medium text-gold">{plan.note}</p>
-        {plan.subNote && (
-          <p className="mt-1 text-xs text-muted-light">{plan.subNote}</p>
-        )}
       </div>
 
       <div className="mt-6 min-h-0 flex-1">

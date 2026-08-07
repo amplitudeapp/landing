@@ -22,7 +22,7 @@ const tools = [
     ),
   },
   {
-    title: "Un espace Conseils",
+    title: "Un espace conseils",
     description:
       "Des vidéos courtes pour comprendre tes placements et éviter les erreurs courantes.",
     icon: (

@@ -49,7 +49,7 @@ const includedFeatures = [
   "Connexion Apple Santé",
   "Cours guidés",
   "Entraînements indépendants",
-  "Onglet Conseils",
+  "Onglet conseils",
   "Communauté privée",
 ];
 

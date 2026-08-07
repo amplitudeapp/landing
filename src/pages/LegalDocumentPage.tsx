@@ -8,7 +8,7 @@ const documents: Record<string, LegalDocumentMeta> = {
   cgu: {
     file: "/legal/cgu.txt",
     title: "Conditions Générales d'Utilisation (CGU)",
-    subtitle: "Application Amplitude ; Version applicable à compter du mardi 30 juin 2026",
+    subtitle: "Application Amplitude ; Version applicable à compter du samedi 8 août 2026",
   },
   cgv: {
     file: "/legal/cgv.txt",

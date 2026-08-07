@@ -55,57 +55,27 @@ L’Éditeur ne peut être tenu responsable d’un dysfonctionnement lié à un 
 obsolète.
 ⸻
 Article 4 – Offres d’abonnement et prestations
-Le Client peut souscrire à l’une des offres suivantes proposées par Amplitude.
-1. Offre Amplitude – Abonnement annuel
-Tarif : 149 € TTC la première année puis 298€.
-Cette offre comprend notamment :
-●
-●
-●
-●
-●
-●
-L’accès à l’ensemble des cours et programmes signatures disponibles sur la plateforme ;
-L’ajout de nouvelles vidéos et contenus chaque mois ;
-Des contenus dédiés à la mobilité, à la récupération et aux conseils pratiques ;
-Les outils de suivi (mesures, calendrier, statistiques) mis à disposition sur la plateforme ;
-L’accès à la communauté privée Amplitude ;
-Un guide de la souplesse au format PDF offert.
-2. Offre Amplitude Pro – Abonnement annuel avec suivi
-Tarif : 249 € TTC la première année, offre valable uniquement pendant le lancement.
-Cette offre comprend :
-●
-●
-●
-●
-L’intégralité des services inclus dans l’offre Amplitude ;
-Un accompagnement en direct pendant une durée de trois (3) mois, sous forme de suivis
-bimensuels en visioconférence ou selon les modalités communiquées par Amplitude ;
-La possibilité de poser des questions en direct lors des séances prévues ;
-Un accompagnement personnalisé destiné à aider le Client à progresser et à débloquer
-certaines difficultés techniques.
-Le calendrier des séances est communiqué aux membres concernés lors de leur inscription.
-3. Offre Amplitude Max – Offre Fondateur à vie - offre valable uniquement pendant le
-lancement.
-Tarif : 499 € TTC, paiement unique.
-Cette offre comprend :
-●
-●
-●
-●
-●
-●
-L’ensemble des prestations incluses dans l’offre Amplitude Pro ;
-Un accès à vie à l’application et aux contenus Amplitude, sous réserve du maintien de la
-plateforme ;
-L’accès à toutes les futures nouveautés développées par Amplitude sans frais
-supplémentaires ;
-Trois (3) séances individuelles de trente (30) minutes ;
-Un bilan personnalisé ainsi que des recommandations adaptées ;
-Une réduction permanente de vingt pour cent (-20 %) sur les offres individuelles et les
-workshops proposés par Amplitude.
-L’offre Amplitude Max est proposée en quantité limitée à vingt (20) membres.
-4. Droit de rétractation – Garantie « satisfait ou remboursé »
+Le Client peut souscrire à l’une des deux offres suivantes proposées par Amplitude. Elles donnent
+accès aux mêmes contenus et aux mêmes fonctionnalités : seules la durée d’abonnement et le
+prix diffèrent.
+1. Offre Amplitude – Abonnement mensuel
+Tarif : 24,90 € TTC par mois, sans engagement de durée.
+2. Offre Amplitude Plus – Abonnement semestriel
+Tarif : 119,40 € TTC tous les six (6) mois, soit 19,90 € TTC par mois.
+3. Contenu commun aux deux offres
+Ces deux offres comprennent notamment :
+● L’accès à l’ensemble des cours et programmes signatures disponibles sur la plateforme ;
+● L’ajout de nouvelles vidéos et contenus chaque mois ;
+● Des contenus dédiés à la mobilité, au pré-training, à la récupération et aux conseils pratiques ;
+● Les outils de suivi (mesures d’angle, calendrier, statistiques) mis à disposition sur la plateforme ;
+● L’accès à la communauté privée Amplitude.
+4. Offres retirées de la vente
+Les offres Amplitude (annuelle), Amplitude Pro et Amplitude Max ne sont plus commercialisées
+depuis le 8 août 2026. Les Clients les ayant souscrites avant cette date conservent l’intégralité
+des prestations, de la durée et des conditions tarifaires acceptées lors de leur souscription,
+jusqu’au terme ou à la résiliation de leur abonnement. Les titulaires de l’offre Amplitude Max
+conservent leur accès à vie ainsi que les avantages qui y étaient attachés.
+5. Droit de rétractation – Garantie « satisfait ou remboursé »
 Chaque offre bénéficie d’une garantie « satisfait ou remboursé » de sept (7) jours à compter de
 la date d’achat.
 Toute demande de remboursement devra être adressée par écrit à l’adresse de contact indiquée

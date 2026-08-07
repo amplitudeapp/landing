@@ -143,8 +143,12 @@
     (function () {
       // Pas d'ouverture auto du deep link : sur mobile (surtout après Stripe),
       // amplitude:// via iframe masque souvent la page de confirmation.
-      var query = window.location.search || '';
-      var deepLink = 'amplitude://payment-success' + query;
+      // On transmet les paramètres de Stripe à l'app, mais pas 'v' : il ne sert
+      // qu'au pixel Meta et n'a rien à faire dans le lien profond.
+      var params = new URLSearchParams(window.location.search);
+      params.delete('v');
+      var query = params.toString();
+      var deepLink = 'amplitude://payment-success' + (query ? '?' + query : '');
 
       document.addEventListener('DOMContentLoaded', function () {
         var openApp = document.getElementById('open-app');

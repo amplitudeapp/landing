@@ -16,50 +16,29 @@ Toute souscription implique l’acceptation pleine, entière et sans réserve de
 que des Conditions Générales d’Utilisation.
 ⸻
 Article 2 – Description des offres
-Amplitude propose plusieurs offres d’accès à ses contenus.
+Amplitude propose deux formules d’abonnement. Elles donnent accès aux mêmes contenus et aux
+mêmes fonctionnalités : seules la durée d’abonnement et le prix diffèrent.
 Offre Amplitude
-Abonnement annuel.
-149 € TTC la première année puis 298 € TTC par an.
-Cette offre comprend notamment :
-●
-●
-●
-●
-●
-l’accès à l’ensemble des programmes disponibles ;
-les nouvelles vidéos publiées chaque mois ;
-les contenus mobilité et récupération ;
-les outils de suivi de progression ;
-l’accès à la communauté privée ;
+Abonnement mensuel, sans engagement de durée.
+24,90 € TTC par mois.
 ⸻
-Offre Amplitude Pro
-Abonnement annuel.
-249 € TTC la première année (offre de lancement).
-Cette offre comprend :
-●
-●
-●
-l’ensemble de l’offre Amplitude ;
-des suivis bimensuels en visioconférence ;
-des échanges en direct ;
+Offre Amplitude Plus
+Abonnement semestriel.
+119,40 € TTC tous les six (6) mois, soit 19,90 € TTC par mois.
 ⸻
-Offre Amplitude Max
-Paiement unique.
-499 € TTC (offre fondateur).
-Cette offre comprend :
-●
-●
-●
-●
-●
-●
-tous les avantages de l’offre Pro ;
-un accès à vie à l’application ;
-les futures évolutions de la plateforme ;
-trois séances individuelles de 30 minutes ;
-un bilan personnalisé ;
-une remise permanente de 20 % sur les prestations individuelles et workshops.
-Cette offre est limitée à vingt (20) membres.
+Ces deux offres comprennent :
+● l’accès à l’ensemble des programmes et des cours à l’unité disponibles ;
+● les nouvelles vidéos publiées chaque mois ;
+● les contenus mobilité, pré-training et récupération ;
+● les outils de suivi de progression et de mesure d’angle ;
+● l’accès à la communauté privée.
+⸻
+Abonnements souscrits antérieurement
+Les abonnements souscrits avant le 8 août 2026, au titre des offres Amplitude (annuelle),
+Amplitude Pro et Amplitude Max, demeurent régis par les conditions de durée, de prix et de
+contenu acceptées lors de leur souscription, jusqu’à leur terme ou leur résiliation. Les titulaires
+de l’offre Amplitude Max conservent leur accès à vie. Le retrait de ces offres de la vente est sans
+effet sur les droits déjà acquis.
 ⸻
 Article 3 – Prix
 Les prix sont exprimés en euros toutes taxes comprises (TTC).
@@ -86,10 +65,14 @@ Amplitude ne conserve aucune donnée bancaire.
 Les moyens de paiement acceptés sont ceux proposés par Stripe au moment de la commande.
 ⸻
 Article 6 – Durée des abonnements
-Les abonnements sont conclus pour une durée de douze (12) mois.
-Sauf résiliation conformément aux présentes CGV, ils sont renouvelés automatiquement pour une
-nouvelle période annuelle.
-Le Client est informé avant le renouvellement conformément à la réglementation applicable.
+La durée de l’abonnement dépend de la formule choisie lors de la souscription :
+● offre Amplitude : un (1) mois ;
+● offre Amplitude Plus : six (6) mois.
+Sauf résiliation conformément aux présentes CGV, l’abonnement est reconduit tacitement, à son
+échéance, pour une nouvelle période de durée identique à la période initiale.
+Le Client est informé avant chaque reconduction conformément à la réglementation applicable.
+Les abonnements souscrits antérieurement au 8 août 2026 conservent la durée et la périodicité de
+reconduction prévues lors de leur souscription.
 ⸻
 Article 7 – Résiliation
 Le Client peut mettre fin au renouvellement automatique de son abonnement à tout moment

@@ -13,7 +13,7 @@ const documents: Record<string, LegalDocumentMeta> = {
   cgv: {
     file: "/legal/cgv.txt",
     title: "Conditions Générales de Vente (CGV)",
-    subtitle: "Application Amplitude ; Version applicable à compter du mardi 30 juin 2026",
+    subtitle: "Application Amplitude ; Version applicable à compter du samedi 8 août 2026",
   },
   privacy: {
     file: "/legal/politique-de-confidentialite.txt",

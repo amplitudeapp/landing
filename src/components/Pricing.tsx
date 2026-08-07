@@ -6,6 +6,10 @@ import { Reveal } from "./Reveal";
 const STRIPE_LINK_SEMESTRIEL = "https://buy.stripe.com/14A7sM04EgX7dGs8aN2cg0a";
 const STRIPE_LINK_MENSUEL = "https://buy.stripe.com/7sYfZi7x6fT30TG3Ux2cg09";
 
+// Le prix barré du semestriel est le coût réel de six mois payés au tarif
+// mensuel (24,90 × 6 = 149,40), affiché sur cette même page. Ce n'est pas un
+// ancien prix : la mention « au tarif mensuel » doit rester visible, sinon la
+// réduction devient une annonce de rabais sans prix de référence pratiqué.
 const plans = [
   {
     id: "semestriel" as const,
@@ -13,7 +17,10 @@ const plans = [
     title: "L'abonnement 6 mois",
     price: "119,40",
     period: "tous les 6 mois",
-    note: "Soit 19,90 € par mois",
+    compareAt: "149,40",
+    discount: "-20 %",
+    note: "Soit 19,90 € par mois au lieu de 24,90 €",
+    subNote: "149,40 € au tarif mensuel sur six mois, soit 30 € économisés",
     cta: "Rejoindre Amplitude",
     href: import.meta.env.VITE_STRIPE_LINK_SEMESTRIEL ?? STRIPE_LINK_SEMESTRIEL,
   },
@@ -23,7 +30,10 @@ const plans = [
     title: "L'abonnement mensuel",
     price: "24,90",
     period: "par mois",
+    compareAt: null,
+    discount: null,
     note: "Sans engagement, résiliable à tout moment",
+    subNote: null,
     cta: "Rejoindre Amplitude",
     href: import.meta.env.VITE_STRIPE_LINK_MENSUEL ?? STRIPE_LINK_MENSUEL,
   },
@@ -75,12 +85,25 @@ function PricingCard({ plan }: { plan: (typeof plans)[number] }) {
   return (
     <article className="card-dark relative flex flex-col p-6 sm:p-7 lg:h-full lg:min-h-full">
       <div className="shrink-0">
-        <p className="label-accent">{plan.brand}</p>
+        <div className="flex flex-wrap items-center gap-3">
+          <p className="label-accent">{plan.brand}</p>
+          {plan.discount && (
+            <span className="rounded-full bg-gold px-3 py-1 text-xs font-semibold tracking-tight text-bg">
+              {plan.discount}
+            </span>
+          )}
+        </div>
+
         <h3 className="mt-3 text-lg font-semibold tracking-tight sm:mt-4 sm:text-xl">
           {plan.title}
         </h3>
 
-        <div className="mt-4 flex items-end gap-2">
+        <div className="mt-4 flex flex-wrap items-end gap-x-2 gap-y-1">
+          {plan.compareAt && (
+            <span className="pb-1 text-xl font-medium leading-none text-muted line-through decoration-muted/70">
+              {plan.compareAt} €
+            </span>
+          )}
           <span className="text-4xl font-semibold leading-none tracking-tighter sm:text-5xl">
             {plan.price}
           </span>
@@ -89,6 +112,9 @@ function PricingCard({ plan }: { plan: (typeof plans)[number] }) {
         </div>
 
         <p className="mt-2 text-sm font-medium text-gold">{plan.note}</p>
+        {plan.subNote && (
+          <p className="mt-1 text-xs text-muted-light">{plan.subNote}</p>
+        )}
       </div>
 
       <div className="mt-6 min-h-0 flex-1">

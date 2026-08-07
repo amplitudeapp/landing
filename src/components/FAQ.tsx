@@ -20,7 +20,7 @@ const faqs = [
   },
   {
     q: "Six mois ou au mois, je prends quoi ?",
-    a: "Les deux formules donnent exactement le même accès, c'est une question de rythme. Le mensuel à 24,90 € te laisse totalement libre, sans engagement. Le semestriel revient à 19,90 € par mois et te met dans les vraies conditions de progresser : la souplesse se construit sur la durée, un mois ne suffit pas à la transformer.",
+    a: "Les deux formules donnent exactement le même accès, c'est une question de rythme. Le mensuel à 24,90 € te laisse totalement libre, sans engagement. Le semestriel est à 119,40 € au lieu de 149,40 € si tu payais ces six mois au tarif mensuel : 20 % de moins, soit 19,90 € par mois. Et il te met dans les vraies conditions de progresser, parce que la souplesse se construit sur la durée : un mois ne suffit pas à la transformer.",
   },
   {
     q: "Comment je résilie ?",

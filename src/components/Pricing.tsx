@@ -13,7 +13,7 @@ const STRIPE_LINK_MENSUEL = "https://buy.stripe.com/7sYfZi7x6fT30TG3Ux2cg09";
 const plans = [
   {
     id: "semestriel" as const,
-    brand: "amplitude",
+    brand: "amplitude plus",
     title: "L'abonnement 6 mois",
     price: "119,40",
     period: "tous les 6 mois",

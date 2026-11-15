@@ -1,45 +1,47 @@
-import { CHALLENGE_PROMO_END } from "../lib/launch";
-import { useLaunchCountdown } from "../hooks/useLaunchCountdown";
+import { useNow } from "../hooks/useNow";
+import { BIRTHDAY_PROMO, isPromoActive, type Promo } from "../lib/promo";
 
-const PROMO_CODE = "RENTREE10";
+function formatRemaining(ms: number): string {
+  const days = Math.floor(ms / 86_400_000);
+  const hours = Math.floor((ms / 3_600_000) % 24);
+  const minutes = Math.max(1, Math.floor((ms / 60_000) % 60));
+  if (days > 0) return `${days} j ${hours} h`;
+  if (hours > 0) return `${hours} h ${minutes} min`;
+  return `${minutes} min`;
+}
 
 /**
- * Bande promo persistante, visible sur toute la page.
+ * Bande promo persistante, visible sur toute la page, renvoyant vers les tarifs.
  *
- * L'offre vaut pour elle-même, indépendamment de toute opération marketing :
- * la bande renvoie donc vers les tarifs.
- *
- * Elle disparaît d'elle-même à l'échéance. Rien à retirer à la main, et aucun
- * risque qu'un « offre terminée » traîne sur le site.
+ * Elle n'existe que pendant l'offre : elle s'allume et s'éteint d'elle-même.
+ * Rien à retirer à la main, et aucun risque qu'un « offre terminée » traîne
+ * sur le site.
  */
-export function PromoBanner() {
-  const { days, hours, minutes, expired } = useLaunchCountdown(CHALLENGE_PROMO_END);
+export function PromoBanner({ promo = BIRTHDAY_PROMO }: { promo?: Promo }) {
+  const now = useNow(15_000);
 
-  if (expired) return null;
-
-  const remaining =
-    days > 0 ? `${days} j ${hours} h` : hours > 0 ? `${hours} h ${minutes} min` : `${minutes} min`;
+  if (!isPromoActive(promo, now)) return null;
 
   return (
     <a
       href="#tarifs"
       className="block bg-gold text-bg transition-opacity hover:opacity-95"
-      aria-label={`Offre limitée : -10 % sur l'abonnement 6 mois avec le code ${PROMO_CODE}`}
+      aria-label={`Offre limitée : ${promo.label} avec le code ${promo.code}`}
     >
       <div className="mx-auto flex max-w-7xl flex-wrap items-center justify-center gap-x-2.5 gap-y-1 px-4 py-2 text-center sm:px-6">
         <span className="text-[13px] font-semibold tracking-tight sm:text-sm">
-          -10 % sur l'abonnement 6 mois
+          {promo.label}
         </span>
         <span className="hidden text-[13px] opacity-70 sm:inline">·</span>
         <span className="text-[13px] sm:text-sm">
           Code{" "}
           <span className="rounded bg-bg/10 px-1.5 py-0.5 font-semibold tracking-wide">
-            {PROMO_CODE}
+            {promo.code}
           </span>
         </span>
         <span className="hidden text-[13px] opacity-70 sm:inline">·</span>
         <span className="text-[13px] font-medium opacity-80 sm:text-sm">
-          plus que {remaining}
+          plus que {formatRemaining(promo.end.getTime() - now.getTime())}
         </span>
       </div>
     </a>

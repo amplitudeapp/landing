@@ -1,41 +1,7 @@
 import { Reveal } from "./Reveal";
-
-// Payment Links Stripe. Les deux sont des abonnements récurrents (6 mois et
-// 1 mois) : jamais de paiement unique, que le back-end lirait comme un accès à
-// vie. Ils redirigent vers /payment-success, d'où part la création du mot de passe.
-const STRIPE_LINK_SEMESTRIEL = "https://buy.stripe.com/14A7sM04EgX7dGs8aN2cg0a";
-const STRIPE_LINK_MENSUEL = "https://buy.stripe.com/7sYfZi7x6fT30TG3Ux2cg09";
-
-// Le prix barré du semestriel est le coût réel de six mois payés au tarif
-// mensuel (24,90 × 6 = 149,40), affiché sur cette même page. Ce n'est pas un
-// ancien prix : la mention « au tarif mensuel » doit rester visible, sinon la
-// réduction devient une annonce de rabais sans prix de référence pratiqué.
-const plans = [
-  {
-    id: "semestriel" as const,
-    brand: "amplitude plus",
-    title: "L'abonnement 6 mois",
-    price: "119,40",
-    period: "tous les 6 mois",
-    compareAt: "149,40",
-    discount: "-20 %",
-    note: "Soit 19,90 € par mois au lieu de 24,90 € au tarif mensuel",
-    cta: "Rejoindre Amplitude",
-    href: import.meta.env.VITE_STRIPE_LINK_SEMESTRIEL ?? STRIPE_LINK_SEMESTRIEL,
-  },
-  {
-    id: "mensuel" as const,
-    brand: "amplitude",
-    title: "L'abonnement mensuel",
-    price: "24,90",
-    period: "par mois",
-    compareAt: null,
-    discount: null,
-    note: "Sans engagement, résiliable à tout moment",
-    cta: "Rejoindre Amplitude",
-    href: import.meta.env.VITE_STRIPE_LINK_MENSUEL ?? STRIPE_LINK_MENSUEL,
-  },
-];
+import { useNow } from "../hooks/useNow";
+import { plans, type Plan } from "../lib/plans";
+import { BIRTHDAY_PROMO, getVisiblePlans, isPromoActive } from "../lib/promo";
 
 /** Les deux formules donnent accès à la même chose : une seule liste suffit. */
 const includedFeatures = [
@@ -79,7 +45,7 @@ function FeatureList() {
   );
 }
 
-function PricingCard({ plan }: { plan: (typeof plans)[number] }) {
+function PricingCard({ plan }: { plan: Plan }) {
   return (
     <article className="card-dark relative flex flex-col p-6 sm:p-7 lg:h-full lg:min-h-full">
       <div className="shrink-0">
@@ -128,6 +94,10 @@ function PricingCard({ plan }: { plan: (typeof plans)[number] }) {
 }
 
 export function Pricing() {
+  const now = useNow();
+  const visiblePlans = getVisiblePlans(plans, now);
+  const promoActive = isPromoActive(BIRTHDAY_PROMO, now);
+
   return (
     <section id="tarifs" className="px-4 py-14 sm:px-6 sm:py-20 lg:px-8 lg:py-24">
       <div className="mx-auto max-w-7xl">
@@ -137,12 +107,21 @@ export function Pricing() {
             <h2 className="mt-5 text-3xl font-medium leading-tight tracking-tight sm:mt-6 sm:text-4xl lg:text-5xl">
               Rejoins la communauté Amplitude
             </h2>
-            <p className="mt-6 text-sm leading-[1.75] text-muted-light sm:mt-7 sm:text-base">
-              Deux formules, le{" "}
-              <span className="font-medium text-text">même accès complet</span> à
-              la méthode. À toi de choisir ton rythme : six mois pour t&apos;engager
-              sur la durée, ou au mois sans engagement.
-            </p>
+            {promoActive ? (
+              <p className="mt-6 text-sm leading-[1.75] text-muted-light sm:mt-7 sm:text-base">
+                Pour son anniversaire, Mylène t&apos;offre{" "}
+                <span className="font-medium text-text">-34 % sur l&apos;abonnement 6 mois</span>,
+                jusqu&apos;au 22 novembre à minuit. Le code {BIRTHDAY_PROMO.code} est
+                déjà appliqué au paiement.
+              </p>
+            ) : (
+              <p className="mt-6 text-sm leading-[1.75] text-muted-light sm:mt-7 sm:text-base">
+                Deux formules, le{" "}
+                <span className="font-medium text-text">même accès complet</span> à
+                la méthode. À toi de choisir ton rythme : six mois pour t&apos;engager
+                sur la durée, ou au mois sans engagement.
+              </p>
+            )}
             <p className="mt-4 text-sm leading-relaxed text-muted-light sm:text-base">
               Application disponible sur{" "}
               <span className="font-medium text-text">iOS</span>
@@ -152,8 +131,12 @@ export function Pricing() {
           </div>
         </Reveal>
 
-        <div className="mt-12 grid items-start gap-6 px-1 sm:mx-auto sm:max-w-4xl lg:mt-16 lg:grid-cols-2 lg:items-stretch lg:gap-6">
-          {plans.map((plan, index) => (
+        <div
+          className={`mt-12 grid items-start gap-6 px-1 sm:mx-auto lg:mt-16 lg:items-stretch lg:gap-6 ${
+            visiblePlans.length > 1 ? "sm:max-w-4xl lg:grid-cols-2" : "sm:max-w-md"
+          }`}
+        >
+          {visiblePlans.map((plan, index) => (
             <div key={plan.id} className="flex min-h-0 flex-col lg:h-full">
               <Reveal delay={120 + index * 80} className="flex h-full flex-1 flex-col">
                 <PricingCard plan={plan} />

@@ -55,9 +55,10 @@ export function Header() {
 
   return (
     <>
-      <div className="top-scroll-fade" aria-hidden />
-
       <header className="relative z-[1] right-0 left-0 px-4 pt-5 sm:px-6">
+      {/* Le voile est ancré au header, pas au conteneur collant : posé plus
+          haut, il recouvrait la bande promo d'un aplat de fond opaque. */}
+      <div className="top-scroll-fade" aria-hidden />
       <div className="relative z-10 mx-auto flex max-w-7xl items-center justify-between gap-4">
         <a
           href="#"

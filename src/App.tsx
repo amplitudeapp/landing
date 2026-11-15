@@ -8,6 +8,7 @@ import { Process } from "./components/Process";
 import { AppPresentationSection } from "./components/AppPresentationSection";
 import { Features } from "./components/Features";
 import { Services } from "./components/Services";
+import { PromoBanner } from "./components/PromoBanner";
 import { Pricing } from "./components/Pricing";
 import { TestimonialsSection } from "./components/TestimonialsSection";
 import { FAQ } from "./components/FAQ";
@@ -24,6 +25,7 @@ export default function App() {
       <LoadingScreen onComplete={() => setIntroReady(true)} />
       <div className="relative min-h-dvh overflow-x-clip bg-bg">
       <div className="sticky top-0 z-[100]">
+        <PromoBanner />
         <Header />
       </div>
       <main className="relative">

@@ -8,6 +8,8 @@ export interface Promo {
   label: string;
   discount: string;
   price: string;
+  /** La remise Stripe ne s'applique qu'au premier paiement. */
+  period: string;
   note: string;
 }
 
@@ -15,6 +17,9 @@ export interface Promo {
  * Anniversaire de Mylène : -34 % sur le semestriel, du lundi 16 novembre 18 h
  * au dimanche 22 à minuit, heure de Paris. Pendant l'offre, le mensuel est
  * retiré pour ne laisser que le 6 mois.
+ *
+ * Le coupon Stripe ne vaut qu'une fois : 78,80 € les 6 premiers mois, puis
+ * 119,40 € à chaque renouvellement. La carte doit le dire.
  *
  * Le prix barré devient 119,40 €, le prix normal du semestriel : sans le
  * mensuel à côté, « 149,40 € au tarif mensuel » n'aurait plus de référence
@@ -27,7 +32,8 @@ export const BIRTHDAY_PROMO: Promo = {
   label: "-34 % sur l'abonnement 6 mois",
   discount: "-34 %",
   price: "78,80",
-  note: "Soit 13,13 € par mois · offre valable jusqu'au 22 novembre",
+  period: "les 6 premiers mois",
+  note: "Soit 13,13 € par mois, puis 119,40 € tous les 6 mois · offre valable jusqu'au 22 novembre",
 };
 
 export function isPromoActive(promo: Promo, now: Date): boolean {
@@ -51,6 +57,7 @@ export function getVisiblePlans(plans: Plan[], now: Date, promo: Promo = BIRTHDA
       compareAt: plan.price,
       price: promo.price,
       discount: promo.discount,
+      period: promo.period,
       note: promo.note,
       href: withPromoCode(plan.href, promo.code),
     }));

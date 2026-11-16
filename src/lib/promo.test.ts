@@ -42,6 +42,11 @@ describe("during the BIRTHDAY window", () => {
     expect(visible[0]).toMatchObject({ price: "78,80", compareAt: "119,40", discount: "-34 %" });
   });
 
+  it("says the discount covers the first 6 months only, then the regular price", () => {
+    expect(visible[0].period).toBe("les 6 premiers mois");
+    expect(visible[0].note).toContain("puis 119,40 € tous les 6 mois");
+  });
+
   it("prices the offer at 119,40 € minus 34 %, rounded to the cent", () => {
     expect(BIRTHDAY_PROMO.price).toBe((Math.round(11940 * 0.66) / 100).toFixed(2).replace(".", ","));
   });

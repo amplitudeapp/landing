@@ -64,7 +64,7 @@ function PricingCard({ plan }: { plan: Plan }) {
 
         <div className="mt-4 flex flex-wrap items-end gap-x-2 gap-y-1">
           {plan.compareAt && (
-            <span className="pb-1 text-xl font-medium leading-none text-muted line-through decoration-muted/70">
+            <span className="pb-1 text-2xl font-medium leading-none text-muted-light line-through decoration-gold decoration-2">
               {plan.compareAt} €
             </span>
           )}

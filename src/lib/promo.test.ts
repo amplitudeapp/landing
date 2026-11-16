@@ -51,11 +51,15 @@ describe("during the BIRTHDAY window", () => {
     expect(visible[0].finePrint).toBe("Puis 119,40 € tous les 6 mois, résiliable avant chaque renouvellement");
   });
 
-  it("sells the offer as the biggest of the year, not as the usual plan", () => {
-    expect(visible[0].title).toBe("La plus grosse offre de l'année");
-    expect(BIRTHDAY_PROMO.label).toContain("La plus grosse offre de l'année");
-    expect(visible[0].note).toBe("Soit 13,13 € par mois · jusqu'au 22 novembre seulement");
-    expect(visible[0].note).not.toContain("119,40");
+  it("sells the offer as the BIRTHDAY OFFER, short enough for a phone", () => {
+    expect(visible[0].title).toBe("BIRTHDAY OFFER");
+    expect(BIRTHDAY_PROMO.label).toBe("BIRTHDAY OFFER");
+    expect(visible[0].note).toBe("Soit 13,13 € par mois · jusqu'au 22 novembre");
+  });
+
+  it("shows the regular price next to the offer price so the difference is obvious", () => {
+    expect(BIRTHDAY_PROMO.compareAt).toBe(plans[0].price);
+    expect(visible[0].compareAt).toBe(BIRTHDAY_PROMO.compareAt);
   });
 
   it("prices the offer at 119,40 € minus 34 %, rounded to the cent", () => {

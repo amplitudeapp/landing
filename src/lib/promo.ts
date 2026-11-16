@@ -6,7 +6,10 @@ export interface Promo {
   end: Date;
   /** Bandeau et carte : tout le texte de l'offre vit ici. */
   label: string;
+  /** Visible à partir de la tablette seulement : sur téléphone, le bandeau tient en une ligne. */
+  occasion: string;
   title: string;
+  compareAt: string;
   discount: string;
   price: string;
   /** La remise Stripe ne s'applique qu'au premier paiement. */
@@ -36,12 +39,14 @@ export const BIRTHDAY_PROMO: Promo = {
   code: "BIRTHDAY",
   start: new Date("2026-11-16T18:00:00+01:00"),
   end: new Date("2026-11-22T23:59:59+01:00"),
-  label: "La plus grosse offre de l'année : -34 % sur 6 mois",
-  title: "La plus grosse offre de l'année",
+  label: "BIRTHDAY OFFER",
+  occasion: "pour l'anniversaire de Mylène",
+  title: "BIRTHDAY OFFER",
+  compareAt: "119,40",
   discount: "-34 %",
   price: "78,80",
   period: "les 6 premiers mois",
-  note: "Soit 13,13 € par mois · jusqu'au 22 novembre seulement",
+  note: "Soit 13,13 € par mois · jusqu'au 22 novembre",
   finePrint: "Puis 119,40 € tous les 6 mois, résiliable avant chaque renouvellement",
 };
 
@@ -64,7 +69,7 @@ export function getVisiblePlans(plans: Plan[], now: Date, promo: Promo = BIRTHDA
     .map((plan) => ({
       ...plan,
       title: promo.title,
-      compareAt: plan.price,
+      compareAt: promo.compareAt,
       price: promo.price,
       discount: promo.discount,
       period: promo.period,

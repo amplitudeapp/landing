@@ -26,22 +26,23 @@ export function PromoBanner({ promo = BIRTHDAY_PROMO }: { promo?: Promo }) {
     <a
       href="#tarifs"
       className="block bg-gold text-bg transition-opacity hover:opacity-95"
-      aria-label={`Offre limitée : ${promo.label} avec le code ${promo.code}`}
+      aria-label={`${promo.label} ${promo.occasion} : ${promo.discount}, ${promo.price} € au lieu de ${promo.compareAt} €`}
     >
-      <div className="mx-auto flex max-w-7xl flex-wrap items-center justify-center gap-x-2.5 gap-y-1 px-4 py-2 text-center sm:px-6">
-        <span className="text-[13px] font-semibold tracking-tight sm:text-sm">
+      <div className="mx-auto flex max-w-7xl items-center justify-center gap-x-2 px-4 py-2 text-center text-[13px] sm:gap-x-2.5 sm:px-6 sm:text-sm">
+        <span className="font-bold tracking-tight">
           <span aria-hidden>🎂 </span>
           {promo.label}
         </span>
-        <span className="hidden text-[13px] opacity-70 sm:inline">·</span>
-        <span className="text-[13px] sm:text-sm">
-          Code{" "}
-          <span className="rounded bg-bg/10 px-1.5 py-0.5 font-semibold tracking-wide">
-            {promo.code}
-          </span>
+        <span className="hidden sm:inline">{promo.occasion}</span>
+        <span className="opacity-60">·</span>
+        <span className="font-bold">{promo.discount}</span>
+        <span className="opacity-60">·</span>
+        <span className="whitespace-nowrap">
+          <span className="font-bold">{promo.price} €</span>{" "}
+          <span className="line-through decoration-2 opacity-70">{promo.compareAt} €</span>
         </span>
-        <span className="hidden text-[13px] opacity-70 sm:inline">·</span>
-        <span className="text-[13px] font-medium opacity-80 sm:text-sm">
+        <span className="hidden opacity-60 md:inline">·</span>
+        <span className="hidden font-medium opacity-80 md:inline">
           plus que {formatRemaining(promo.end.getTime() - now.getTime())}
         </span>
       </div>

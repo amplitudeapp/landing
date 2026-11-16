@@ -13,7 +13,7 @@ describe("outside the BIRTHDAY window the pricing is unchanged", () => {
   );
 
   it("shows no fine print on the regular plans", () => {
-    expect(plans.every((plan) => plan.finePrint === null)).toBe(true);
+    expect(plans.every((plan) => plan.finePrint === null && plan.tagline === null)).toBe(true);
   });
 
   it("keeps today's two plans", () => {
@@ -53,6 +53,7 @@ describe("during the BIRTHDAY window", () => {
 
   it("sells the offer as the BIRTHDAY OFFER, short enough for a phone", () => {
     expect(visible[0].title).toBe("BIRTHDAY OFFER");
+    expect(visible[0].tagline).toBe("La plus grosse offre de l'année");
     expect(BIRTHDAY_PROMO.label).toBe("BIRTHDAY OFFER");
     expect(visible[0].note).toBe("Soit 13,13 € par mois · jusqu'au 22 novembre");
   });

@@ -8,6 +8,7 @@ export interface Plan {
   id: "semestriel" | "mensuel";
   brand: string;
   title: string;
+  tagline: string | null;
   price: string;
   period: string;
   compareAt: string | null;
@@ -28,6 +29,7 @@ export const plans: Plan[] = [
     id: "semestriel",
     brand: "amplitude plus",
     title: "L'abonnement 6 mois",
+    tagline: null,
     price: "119,40",
     period: "tous les 6 mois",
     compareAt: "149,40",
@@ -41,6 +43,7 @@ export const plans: Plan[] = [
     id: "mensuel",
     brand: "amplitude",
     title: "L'abonnement mensuel",
+    tagline: null,
     price: "24,90",
     period: "par mois",
     compareAt: null,

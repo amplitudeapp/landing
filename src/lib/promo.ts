@@ -9,6 +9,7 @@ export interface Promo {
   /** Visible à partir de la tablette seulement : sur téléphone, le bandeau tient en une ligne. */
   occasion: string;
   title: string;
+  tagline: string;
   compareAt: string;
   discount: string;
   price: string;
@@ -42,6 +43,7 @@ export const BIRTHDAY_PROMO: Promo = {
   label: "BIRTHDAY OFFER",
   occasion: "pour l'anniversaire de Mylène",
   title: "BIRTHDAY OFFER",
+  tagline: "La plus grosse offre de l'année",
   compareAt: "119,40",
   discount: "-34 %",
   price: "78,80",
@@ -69,6 +71,7 @@ export function getVisiblePlans(plans: Plan[], now: Date, promo: Promo = BIRTHDA
     .map((plan) => ({
       ...plan,
       title: promo.title,
+      tagline: promo.tagline,
       compareAt: promo.compareAt,
       price: promo.price,
       discount: promo.discount,

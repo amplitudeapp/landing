@@ -61,6 +61,11 @@ function PricingCard({ plan }: { plan: Plan }) {
         <h3 className="mt-3 text-lg font-semibold tracking-tight sm:mt-4 sm:text-xl">
           {plan.title}
         </h3>
+        {plan.tagline && (
+          <p className="mt-1 text-sm font-semibold uppercase tracking-wide text-gold">
+            {plan.tagline}
+          </p>
+        )}
 
         <div className="mt-4 flex flex-wrap items-end gap-x-2 gap-y-1">
           {plan.compareAt && (

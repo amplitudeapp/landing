@@ -89,6 +89,10 @@ function PricingCard({ plan }: { plan: Plan }) {
       >
         {plan.cta}
       </a>
+
+      {plan.finePrint && (
+        <p className="mt-3 text-center text-xs text-muted">{plan.finePrint}</p>
+      )}
     </article>
   );
 }

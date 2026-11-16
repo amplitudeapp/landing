@@ -13,6 +13,8 @@ export interface Plan {
   compareAt: string | null;
   discount: string | null;
   note: string;
+  /** Mention discrète sous la carte, pour ce qui doit être dit sans être vendu. */
+  finePrint: string | null;
   cta: string;
   href: string;
 }
@@ -31,6 +33,7 @@ export const plans: Plan[] = [
     compareAt: "149,40",
     discount: "-20 %",
     note: "Soit 19,90 € par mois au lieu de 24,90 € au tarif mensuel",
+    finePrint: null,
     cta: "Rejoindre Amplitude",
     href: import.meta.env.VITE_STRIPE_LINK_SEMESTRIEL ?? STRIPE_LINK_SEMESTRIEL,
   },
@@ -43,6 +46,7 @@ export const plans: Plan[] = [
     compareAt: null,
     discount: null,
     note: "Sans engagement, résiliable à tout moment",
+    finePrint: null,
     cta: "Rejoindre Amplitude",
     href: import.meta.env.VITE_STRIPE_LINK_MENSUEL ?? STRIPE_LINK_MENSUEL,
   },

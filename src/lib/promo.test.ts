@@ -12,6 +12,10 @@ describe("outside the BIRTHDAY window the pricing is unchanged", () => {
     },
   );
 
+  it("shows no fine print on the regular plans", () => {
+    expect(plans.every((plan) => plan.finePrint === null)).toBe(true);
+  });
+
   it("keeps today's two plans", () => {
     expect(plans.map((plan) => [plan.id, plan.price, plan.compareAt])).toEqual([
       ["semestriel", "119,40", "149,40"],
@@ -44,7 +48,14 @@ describe("during the BIRTHDAY window", () => {
 
   it("says the discount covers the first 6 months only, then the regular price", () => {
     expect(visible[0].period).toBe("les 6 premiers mois");
-    expect(visible[0].note).toContain("puis 119,40 € tous les 6 mois");
+    expect(visible[0].finePrint).toBe("Puis 119,40 € tous les 6 mois, résiliable avant chaque renouvellement");
+  });
+
+  it("sells the offer as the biggest of the year, not as the usual plan", () => {
+    expect(visible[0].title).toBe("La plus grosse offre de l'année");
+    expect(BIRTHDAY_PROMO.label).toContain("La plus grosse offre de l'année");
+    expect(visible[0].note).toBe("Soit 13,13 € par mois · jusqu'au 22 novembre seulement");
+    expect(visible[0].note).not.toContain("119,40");
   });
 
   it("prices the offer at 119,40 € minus 34 %, rounded to the cent", () => {

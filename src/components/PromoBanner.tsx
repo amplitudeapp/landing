@@ -30,6 +30,7 @@ export function PromoBanner({ promo = BIRTHDAY_PROMO }: { promo?: Promo }) {
     >
       <div className="mx-auto flex max-w-7xl flex-wrap items-center justify-center gap-x-2.5 gap-y-1 px-4 py-2 text-center sm:px-6">
         <span className="text-[13px] font-semibold tracking-tight sm:text-sm">
+          <span aria-hidden>🎂 </span>
           {promo.label}
         </span>
         <span className="hidden text-[13px] opacity-70 sm:inline">·</span>
